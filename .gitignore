@@ -1,1 +1,36 @@
-.venv
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# IDE/Editor specific files and directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.h5
+/.idea
+/.vscode
+/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and databases
+*.log

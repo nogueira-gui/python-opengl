@@ -9,7 +9,8 @@ class Face:
     def __init__(self):
         pg.init()
         pg.display.set_caption("Pygame Face")
-        self.screen = pg.display.set_mode((largura_janela, altura_janela), pg.FULLSCREEN)
+        self.fullscreen = False
+        self.screen = pg.display.set_mode((largura_janela, altura_janela))
         self.clock = pg.time.Clock()
 
         # Inicialize o detector de faces do OpenCV
@@ -28,7 +29,7 @@ class Face:
     def mainLoop(self):
 
         # Defina o índice da câmera que você deseja usar
-        camera_index = 1  # Use 0 para a primeira câmera, 1 para a segunda, etc.
+        camera_index = 0  # Use 0 para a primeira câmera, 1 para a segunda, etc.
 
         # Inicialize a captura de vídeo com a câmera especificada
         cap = cv2.VideoCapture(camera_index)
@@ -44,6 +45,16 @@ class Face:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     running = False
+                elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+                    running = False
+                elif event.type == pg.KEYDOWN and event.key == pg.K_f:
+                    # Alternar entre tela cheia e janela
+                    self.fullscreen = not self.fullscreen
+                    if self.fullscreen:
+                        self.screen = pg.display.set_mode((largura_janela, altura_janela), pg.FULLSCREEN)
+                    else:
+                        self.screen = pg.display.set_mode((largura_janela, altura_janela))
+    
 
             # Capturar um quadro do feed de vídeo
             ret, frame = cap.read()
